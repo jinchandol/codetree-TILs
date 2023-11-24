@@ -11,7 +11,8 @@ for i in range(n):
     if total < 0:
         maxi = total
         total = 0
-    elif maxi < total:
+    
+    elif maxi <= total:
         maxi = total
 
 print(maxi)
