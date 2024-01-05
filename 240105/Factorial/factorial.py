@@ -6,6 +6,6 @@ def fac(num):
     
     return fac(num-1)*num
 
-ans = fac(5)
+ans = fac(n)
 
 print(ans)
