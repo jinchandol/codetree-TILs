@@ -12,7 +12,7 @@ def is_equal():
     return True
 
 if len(str1) == len(str2):
-    if is_equal:
+    if is_equal():
         print("Yes")
     else:
         print("No")
