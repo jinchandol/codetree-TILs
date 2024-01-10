@@ -1,6 +1,6 @@
 a, b, c = map(int, input().split())
 
-if (b >= 11) and (c>= 11):
+if (b >= 11) and (c>= 11) or (a > 11):
     d_a = a - 11
     h_b = b - 11
     m_c = c - 11
