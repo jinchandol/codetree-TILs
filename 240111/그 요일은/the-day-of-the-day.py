@@ -24,7 +24,7 @@ day2 = get_days(m2, d2)
 diff_week = (day2 - day1) // 7
 diff_day = (day2 - day1) % 7
 
-if diff_day <= target:
+if diff_day >= target:
     diff_week += 1
 
 print(diff_week)
