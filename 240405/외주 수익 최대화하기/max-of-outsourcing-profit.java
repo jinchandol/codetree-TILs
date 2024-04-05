@@ -12,7 +12,8 @@ public class Main {
         ans = 0;
         for (int i=1; i<=n; i++){
             task[i][0] = i; // 일의 시점
-            task[i][1] = sc.nextInt() + i - 1; // 일의 종점
+            int end = sc.nextInt();
+            task[i][1] = end + i - 1; // 일의 종점
             task[i][2] = sc.nextInt(); // 일의 수익
         }
 
@@ -29,8 +30,12 @@ public class Main {
         }
 
         if (end < task[idx][0]){
-            recur(idx + 1, task[idx][1], profit + task[idx][2]);
-            recur(idx + 1, end, profit);
+            if (task[idx][1] <= n) {
+                recur(idx + 1, task[idx][1], profit + task[idx][2]);
+                recur(idx + 1, end, profit);
+            } else {
+                recur(idx + 1, end, profit);
+            } 
         } else {
             recur(idx + 1, end, profit);
         }
