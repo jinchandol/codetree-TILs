@@ -152,7 +152,7 @@ public class Main {
 			}
 		}
 		
-
+		
 		for (int r = 0; r < N; r++) {
 			for (int c = 0; c < N; c++) {
 				if (deadTree[r][c] > maxCnt) {
@@ -163,33 +163,34 @@ public class Main {
 			}
 		}
 		
-		yakMap[targetR][targetC] = C + 1;
-		map[targetR][targetC] = 0;
+		if (targetR != -1 && targetC != -1) {
+			yakMap[targetR][targetC] = C + 1;
+			map[targetR][targetC] = 0;
 
-		for (int dir = 4; dir < 8; dir++) {
-			for (int i = 1; i <= K; i++) {
-				int nr = targetR + i * drs[dir];
-				int nc = targetC + i * dcs[dir];
+			for (int dir = 4; dir < 8; dir++) {
+				for (int i = 1; i <= K; i++) {
+					int nr = targetR + i * drs[dir];
+					int nc = targetC + i * dcs[dir];
 
-				if (nr < 0 || N <= nr || nc < 0 || N <= nc)
-					break;
+					if (nr < 0 || N <= nr || nc < 0 || N <= nc)
+						break;
 
-				if (map[nr][nc] == -1)
-					break;
+					if (map[nr][nc] == -1)
+						break;
 
-				if (map[nr][nc] == 0 || yakMap[nr][nc] > 0) {
+					if (map[nr][nc] == 0 || yakMap[nr][nc] > 0) {
+						yakMap[nr][nc] = C + 1;
+						map[nr][nc] = 0;
+						break;
+					}
+
 					yakMap[nr][nc] = C + 1;
 					map[nr][nc] = 0;
-					break;
 				}
-
-				yakMap[nr][nc] = C + 1;
-				map[nr][nc] = 0;
 			}
+
+			dead += maxCnt;
 		}
-
-		dead += maxCnt;
-
 	}
 
 	private static void printMap() {
@@ -230,5 +231,4 @@ public class Main {
 
 		System.out.println(dead);
 	}
-
 }
