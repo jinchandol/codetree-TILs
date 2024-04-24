@@ -93,28 +93,30 @@ public class Main {
 		for (int row = r; row <= r + range; row++) {
 			for (int col = c; col <= c + range; col++) {
 				tmp[r + (col - c)][c + range - (row - r)] = maze[row][col];
-				
+
 				// 참가자 회전 갱신
 				for (int idx = 0; idx < M; idx++) {
 					// 탈출한 참가자는 고려하지 않아도 됨
 					if (runners[idx].isExit)
 						continue;
-					
-					if (isRotation[idx]) continue;
-					
+
+					if (isRotation[idx])
+						continue;
+
 					if (runners[idx].r == row && runners[idx].c == col) {
-						runners[idx].r = r + (col - c);						
+						runners[idx].r = r + (col - c);
 						runners[idx].c = c + range - (row - r);
 						isRotation[idx] = true;
 					}
 				}
 			}
 		}
-		
+
 		for (int row = r; row <= r + range; row++) {
 			for (int col = c; col <= c + range; col++) {
 				maze[row][col] = tmp[row][col];
-				if (maze[row][col] > 0) maze[row][col]--;
+				if (maze[row][col] > 0)
+					maze[row][col]--;
 				if (maze[row][col] == -1) {
 					exit.r = row;
 					exit.c = col;
@@ -126,26 +128,30 @@ public class Main {
 	private static void mazing() {
 		// 사각형을 잡고
 		int dist = Integer.MAX_VALUE;
-		int targetIdx = -1;
+		int range = Integer.MAX_VALUE;
 		for (int idx = 0; idx < M; idx++) {
 			// 탈출한 참가자는 고려하지 않아도 됨
 			if (runners[idx].isExit)
 				continue;
-			if (dist > Math.abs(exit.r - runners[idx].r) + Math.abs(exit.c - runners[idx].c)) {
+			if (dist >= Math.abs(exit.r - runners[idx].r) + Math.abs(exit.c - runners[idx].c)) {
 				dist = Math.abs(exit.r - runners[idx].r) + Math.abs(exit.c - runners[idx].c);
-				targetIdx = idx;
+				range = Math.min(range, Math.max(Math.abs(exit.r - runners[idx].r), Math.abs(exit.c - runners[idx].c)));
 			}
 		}
 
-		int range = Math.max(Math.abs(exit.r - runners[targetIdx].r), Math.abs(exit.c - runners[targetIdx].c));
 		
 		int targetR = -1;
 		int targetC = -1;
 
 		out: for (int r = exit.r - range; r <= exit.r; r++) {
 			for (int c = exit.c - range; c <= exit.c; c++) {
-				if (r < 0 || c < 0)	continue;
+				if (r < 0 || c < 0)
+					continue;
 				
+				if (r + range >= N || c + range >= N) 
+					continue;
+				
+
 				if (search(r, c, range)) {
 					targetR = r;
 					targetC = c;
@@ -153,22 +159,22 @@ public class Main {
 				}
 			}
 		}
-		
+
 		if (targetR != -1 && targetC != -1) {
 			// 회전을 시킴
 			rotation(targetR, targetC, range);
 		}
 	}
-	
+
 	private static void printMaze() {
 		for (int[] arr : maze) {
 			System.out.println(Arrays.toString(arr));
 		}
-		
+
 		for (Pair p : runners) {
 			System.out.println(p);
 		}
-		
+
 		System.out.println("---------------------------------------------");
 	}
 
@@ -181,9 +187,9 @@ public class Main {
 
 		maze = new int[N][N];
 		runners = new Pair[M];
-		
+
 		int totalDist = 0;
-		
+
 		for (int r = 0; r < N; r++) {
 			for (int c = 0; c < N; c++) {
 				maze[r][c] = sc.nextInt();
@@ -199,10 +205,8 @@ public class Main {
 		exit = new Pair(sc.nextInt() - 1, sc.nextInt() - 1);
 		maze[exit.r][exit.c] = -1;
 
-		
-
 		// 탈출 시작함
-		while (K-- > 0) {
+		for (int time = 1; time <= K; time++) {
 			// 참가자들이 이동함
 			move();
 			
@@ -213,13 +217,13 @@ public class Main {
 				break;
 			}
 		}
-		
-		for (int i=0; i<M; i++) {
+
+		for (int i = 0; i < M; i++) {
 			totalDist += runners[i].dist;
 		}
-		
+
 		System.out.println(totalDist);
-		System.out.println((exit.r+1) + " " + (exit.c+1));
+		System.out.println((exit.r + 1) + " " + (exit.c + 1));
 	}
 
 }
