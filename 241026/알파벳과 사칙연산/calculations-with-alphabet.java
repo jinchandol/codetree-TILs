@@ -35,7 +35,7 @@ public class Main {
     public static void performOperations() {
         int numIndex = 0;
         int operIndex = 0;
-        int answer = alphabet[index.get(0)];
+        int answer = alphabet[index.get(numIndex)];
 
         while (numIndex < index.size()-1 && operIndex < operation.size()) {
             int a = answer;
@@ -43,7 +43,7 @@ public class Main {
             
             answer = doOperation(a, b, operation.get(operIndex));
             
-            numIndex++;
+            numIndex += 2;
             operIndex++;
         }
 
