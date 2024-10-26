@@ -16,8 +16,13 @@ public class Main {
             else operation.add(c);
         }
 
-        settingNumber(0);
+        if (index.size() == 1) {
+            ans = 4;
+            System.out.println(ans);
+            return;
+        }
 
+        settingNumber(0);
         System.out.println(ans);
     }
 
