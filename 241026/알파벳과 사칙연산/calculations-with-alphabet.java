@@ -35,16 +35,23 @@ public class Main {
     public static void performOperations() {
         int numIndex = 0;
         int operIndex = 0;
-        int answer = alphabet[index.get(numIndex)];
+        int answer = 0;
 
-        while (numIndex < index.size()-1 && operIndex < operation.size()) {
-            int a = answer;
-            int b = alphabet[index.get(numIndex+1)];
+        int left = alphabet[index.get(numIndex)];
+        int right = alphabet[index.get(numIndex+1)];
+
+        while (numIndex < index.size() && operIndex < operation.size()) {
+            int a = left;
+            int b = right;
             
             answer = doOperation(a, b, operation.get(operIndex));
-            
             numIndex += 2;
             operIndex++;
+            
+            if (numIndex < index.size()) {
+                left = answer;
+                right = alphabet[index.get(numIndex)];
+            }
         }
 
         ans = Math.max(ans, answer);
