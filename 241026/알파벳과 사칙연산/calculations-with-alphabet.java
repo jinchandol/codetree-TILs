@@ -45,13 +45,16 @@ public class Main {
             int b = right;
             
             answer = doOperation(a, b, operation.get(operIndex));
+            
             numIndex += 2;
             operIndex++;
             
             if (numIndex < index.size()) {
                 left = answer;
                 right = alphabet[index.get(numIndex)];
+                continue;
             }
+            break;
         }
 
         ans = Math.max(ans, answer);
