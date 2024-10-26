@@ -33,12 +33,12 @@ public class Main {
             Line targetLine = Lines.get(selectedLine.get(target));
             for (int idx = target + 1; idx < size; idx++) {
                 Line idxLine = Lines.get(selectedLine.get(idx));
-                if (idxLine.left < targetLine.left && targetLine.left < idxLine.right) {
+                if (idxLine.left <= targetLine.left && targetLine.left <= idxLine.right) {
                     isOk = false;
                     break;
                 }
 
-                if (idxLine.left < targetLine.right && targetLine.right < idxLine.right) {
+                if (idxLine.left <= targetLine.right && targetLine.right <= idxLine.right) {
                     isOk = false;
                     break;
                 }
