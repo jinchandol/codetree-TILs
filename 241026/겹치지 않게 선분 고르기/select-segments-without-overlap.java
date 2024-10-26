@@ -28,25 +28,20 @@ public class Main {
 
     public static int calc() {
         int size = selectedLine.size();
-        boolean isOk = true;
-        for (int target = 0; target < size - 1 ; target++) {
-            Line targetLine = Lines.get(selectedLine.get(target));
-            for (int idx = target + 1; idx < size; idx++) {
-                Line idxLine = Lines.get(selectedLine.get(idx));
-                if (idxLine.left <= targetLine.left && targetLine.left <= idxLine.right) {
-                    isOk = false;
-                    break;
-                }
-
-                if (idxLine.left <= targetLine.right && targetLine.right <= idxLine.right) {
-                    isOk = false;
-                    break;
+        
+        for (int i = 0; i < size - 1; i++) {
+            Line line1 = Lines.get(selectedLine.get(i));
+            for (int j = i + 1; j < size; j++) {
+                Line line2 = Lines.get(selectedLine.get(j));
+                
+                // 두 선분이 겹치는지 확인
+                if (!(line1.right < line2.left || line2.right < line1.left)) {
+                    return 0;
                 }
             }
         }
 
-        return (isOk ? size : 0);
-
+        return size;
     }
 
     public static void selectLine(int index) {
