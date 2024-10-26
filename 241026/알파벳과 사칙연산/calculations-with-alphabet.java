@@ -38,31 +38,12 @@ public class Main {
     }
 
     public static void performOperations() {
-        int numIndex = 0;
-        int operIndex = 0;
-        int answer = 0;
-
-        int left = alphabet[index.get(numIndex)];
-        int right = alphabet[index.get(numIndex+1)];
-
-        while (numIndex < index.size() && operIndex < operation.size()) {
-            int a = left;
-            int b = right;
-            
-            answer = doOperation(a, b, operation.get(operIndex));
-            
-            numIndex += 2;
-            operIndex++;
-            
-            if (numIndex < index.size()) {
-                left = answer;
-                right = alphabet[index.get(numIndex)];
-                continue;
-            }
-            break;
+        int result = alphabet[index.get(0)]; 
+        for (int i = 0; i < operation.size(); i++) {
+            int nextValue = alphabet[index.get(i + 1)];
+            result = doOperation(result, nextValue, operation.get(i));
         }
-
-        ans = Math.max(ans, answer);
+        ans = Math.max(ans, result);
     }
 
     public static int doOperation(int a, int b, int operation) {
