@@ -15,15 +15,16 @@ public class Main {
         int count = 0;
 
         for (char c : s) {
-            if (0 <= c - 'a' && c - 'a' <=5) {
+            if (c >= 'a' && c <= 'f') {
                 orders.add(c - 'a');
-                if (visited[c - 'a']) continue;
-                else {
-                    index.add(c-'a');
+                if (!visited[c - 'a']) {
+                    visited[c - 'a'] = true;
+                    index.add(c - 'a');
                     count++;
                 }
+            } else {
+                operation.add(c);
             }
-            else operation.add(c);
         }
 
         if (orders.size() == 1) {
