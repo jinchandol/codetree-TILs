@@ -13,13 +13,7 @@ public class Main {
         char[] s = br.readLine().toCharArray();
 
         for (char c : s) {
-            if (0 <= c - 'a' && c - 'a' <=5) {
-                if (visited[c - 'a']) continue;
-                else {
-                    visited[c - 'a'] = true;
-                    index.add(c - 'a');
-                }
-            }
+            if (0 <= c - 'a' && c - 'a' <=5) index.add(c - 'a');
             else operation.add(c);
         }
 
@@ -55,15 +49,10 @@ public class Main {
 
     public static int doOperation(int a, int b, int operation) {
         switch (operation) {
-            case '+' : {
-                return sum(a, b);
-            }
-            case '-' : {
-                return minus(a, b);
-            }
-            default : {
-                return product(a, b);
-            }
+            case '+': return a + b;
+            case '-': return a - b;
+            case '*': return a * b;
+            default: throw new IllegalArgumentException("Invalid operation");
         }
     }
 
