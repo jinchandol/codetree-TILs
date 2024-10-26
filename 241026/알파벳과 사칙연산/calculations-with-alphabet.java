@@ -13,12 +13,13 @@ public class Main {
         char[] s = br.readLine().toCharArray();
 
         for (char c : s) {
-            if (0 <= c - 'a' && c - 'a' <=5) 
+            if (0 <= c - 'a' && c - 'a' <=5) {
                 if (visited[c - 'a']) continue;
                 else {
                     visited[c - 'a'] = true;
                     index.add(c - 'a');
                 }
+            }
             else operation.add(c);
         }
 
