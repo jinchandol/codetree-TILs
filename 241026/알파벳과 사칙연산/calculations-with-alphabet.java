@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-    public static int ans;
+    public static int ans = Integer.MIN_VALUE;
     public static int[] alphabet = new int[6];
     public static ArrayList<Integer> index = new ArrayList<>();
     public static ArrayList<Character> operation = new ArrayList<>();
