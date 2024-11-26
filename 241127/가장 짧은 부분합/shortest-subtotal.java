@@ -33,6 +33,6 @@ public class Main {
             sumVal -= arr[i];
         }
 
-        System.out.print(ans);
+        System.out.print((ans == Integer.MAX_VALUE) ? -1 : ans);
     }
 }
