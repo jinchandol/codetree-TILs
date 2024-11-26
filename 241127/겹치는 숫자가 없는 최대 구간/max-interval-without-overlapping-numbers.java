@@ -22,7 +22,7 @@ public class Main {
             }
 
             ans = Math.max(ans, j-i+1);
-            countArr[arr[j+1]]--;
+            countArr[arr[i]]--;
         }
 
         System.out.println(ans);
