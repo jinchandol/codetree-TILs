@@ -27,7 +27,8 @@ public class Main {
                 j++;
             }
             
-            ans = Math.min(ans, j - i + 2);
+            if (j + 1 <= n && sumVal + arr[j + 1] >= s) 
+                ans = Math.min(ans, j - i + 2);
             
             sumVal -= arr[i];
         }
